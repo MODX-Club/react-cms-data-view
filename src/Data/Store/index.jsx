@@ -13,7 +13,8 @@ export default class MessageStore extends ReduceStore {
  
 	actions = {
 		CREATE: 'CREATE_MESSAGE',
-		REMOVE: 'REMOVE_MESSAGE',
+    REMOVE: 'REMOVE_MESSAGE',
+		UPDATE: 'UPDATE_OBJECT',
 		GET_AT: 'GET_AT_MESSAGE',
 		FIND: 	'FIND_MESSAGE',
 		SET_DATA: 	'SET_DATA',
@@ -27,9 +28,9 @@ export default class MessageStore extends ReduceStore {
 	 return Immutable.fromJS([]);  
 	}  
 
-	getState(){
-		return this._state.toJS();
-	}
+	// getState(){
+	// 	return this._state.toJS();
+	// }
 
 	reduce(state, action, data) {    
    	
@@ -39,7 +40,20 @@ export default class MessageStore extends ReduceStore {
 
 	   case this.actions.SET_DATA:   
 
-	 		return Immutable.fromJS(action.object);    
+      console.log('Current state', state);
+      // return state.set(action.object);   
+
+      // var newState = state.push(action.object); 
+
+      // console.log('newState state', newState);
+
+      state = state.clear();
+
+      action.object.map((item) => {
+        state = state.push(item);
+      });
+
+	 		return    state;
 
 
 	   case this.actions.CREATE:   
@@ -51,9 +65,9 @@ export default class MessageStore extends ReduceStore {
 
 	     return this.remove(state, action); 
 
-	   case this.actions.REMOVE: 
+	   case this.actions.UPDATE: 
 
-	     return this.remove(state, action);
+	     return this.update(state, action);
 
 	   case this.actions.GET_AT: 
 
@@ -70,13 +84,13 @@ export default class MessageStore extends ReduceStore {
 
   remove(state, action){
 
-  	// console.log('this.remove', action.object);
+    // console.log('this.remove', action.object);
 
-  	// return this.getAt();
+    // return this.getAt();
 
-  	// console.log("Messages", messages);
+    // console.log("Messages", messages);
 
-  	window.state = state;
+    window.state = state;
 
 
     var index = state.indexOf(action.object); 
@@ -84,9 +98,67 @@ export default class MessageStore extends ReduceStore {
     //   return objects.id === action.id ? true : false;
     // }); 
 
+    console.log('remove', index, action.object);
+
 
     if(index != -1){ 
-    	return state.delete(index);
+      return state.delete(index);
+    }
+    else{
+      return state;
+    } 
+
+    // console.log('this.getAt', this.getAt(state, action));
+
+    // return this.getAt();
+
+    // console.log("Messages", messages);
+    // var index = state.findIndex((objects,k) => {
+    //   return objects.id === action.id ? true : false;
+    // }); 
+
+    // if(index != -1){ 
+      // var index = action.object;
+     //  return state.splice(index,1);
+    // }
+    // else{
+    //  return state;
+    // } 
+  }
+
+  update(state, action){
+
+  	// console.log('this.remove', action.object);
+
+  	// return this.getAt();
+
+  	// console.log("Messages", messages);
+
+    let {object, newObject} = action;
+
+    window.object = object;
+  	window.newObject = newObject;
+
+
+    var index = state.indexOf(object); 
+    // var index = state.findIndex((objects,k) => {
+    //   return objects.id === action.id ? true : false;
+    // }); 
+
+    // console.log('index', index);
+    // console.log('OldObject', object);
+    // console.log('newObject', newObject);
+    // console.log('State', state);
+
+    if(index != -1 && newObject){ 
+      // return state.update(index, newObject);
+      // return state.merge(index, newObject);
+
+      return state.update(index, function(item){
+        // console.log('Item', item);
+        Object.assign(item, newObject);
+        return item;
+      });
     }
     else{
     	return state;
@@ -111,7 +183,8 @@ export default class MessageStore extends ReduceStore {
   }
 
   getAt(state, action){
-  	return state(get, action.object);
+    return state.get(action.object);
+  	// return state.get(0);
   }
 }
 

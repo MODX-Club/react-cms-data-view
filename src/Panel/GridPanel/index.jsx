@@ -7,11 +7,12 @@ import MessageCreator from './components/message-creator';
 import MessageActions from './actions/message-actions';
 import MessageStore from '../../Data/Store';
 
-import Pagination from 'material-ui-components/src/Pagination';
+import Pagination from '../../Pagination';
 
 // import { Dispatcher } from 'flux'; 
 
 import Table, { TableBody, TableCell, TableHead, TableRow } from 'material-ui/Table';
+import Button from 'material-ui/Button';
 
 import Dispatcher from '../../Dispatcher/';
 
@@ -19,7 +20,7 @@ const defaultProps = {
 	page: 1,
 	limit: 10,
 	query: '',
-  connector_url: 'assets/components/modxsite/connectors/connector.php?pub_action=gmail-db/places/',
+  connector_url: 'assets/components/modxsite/connectors/connector.php',
 }
 
 export default class GridPanel extends Component {  
@@ -41,7 +42,7 @@ export default class GridPanel extends Component {
       limit: props.limit,
       page: props.page,
       query: props.query, 
-    	data: this.store.getState(),
+    	// data: this.store.getState().toArray(),
     };  
 
     console.log();
@@ -82,7 +83,7 @@ export default class GridPanel extends Component {
       inRequest: false,
     }
 
-    fetch(this.props.connector_url +'getdata',{
+    fetch(this.props.connector_url +'?pub_action=' + this.props.connector_path +'getdata',{
       credentials: 'same-origin',
       method: "POST",
       body: body,
@@ -111,7 +112,14 @@ export default class GridPanel extends Component {
             }, this);
           }
 
-          this.props.documentActions.addInformerMessage(data.message || "Ошибка выполнения запроса");
+          var error = data.message || "Ошибка выполнения запроса";
+
+          if(this.props.addInformerMessage){
+            this.props.addInformerMessage(error);
+          }
+          else{
+            console.error(error);
+          }
         }
 
         // if(!this.state.errors){
@@ -139,7 +147,7 @@ export default class GridPanel extends Component {
 
 		this.dispatcher.register((payload) => {
 
-			// console.log('payload.actionType', payload, payload.type);
+			// console.log('componentDidUpdate payload.actionType', payload, payload.type);
 
 		   //  switch (payload.actionType) {
 		   //    case 'country-update':
@@ -150,12 +158,18 @@ export default class GridPanel extends Component {
 		   //      console.log("DSf");
 		   //      break;
 		  	// }
-		  	this.setState({
-	    		data: this.store.getState(),
-		    });  
-		});
+		  	// this.setState(prevState => {
+     //      console.log('componentDidUpdate prevState', prevState.data && prevState.data[0] && prevState.data[0].username);
+     //      return {
+     //        data: lodash.cloneDeep(this.store.getState().toArray()),
+     //      }
+     //    }); 
 
-		this.loadItems();
+        // this.forceUpdate();
+		    // this.loadItems();
+    });
+
+    this.loadItems();
 
     // this.listener = this.store.messages.addListener(this.onStateChanges.bind(this));  
     // this.listener = this.store.messages.addListener(this.onStateChanges2.bind(this));  
@@ -166,8 +180,20 @@ export default class GridPanel extends Component {
   }  
 
   componentDidUpdate(prevProps, prevState){
-  	console.log('componentDidUpdate', prevState);
-  	console.log('componentDidUpdate', this.state);
+    // console.log('componentDidUpdate', prevState);
+    // console.log('componentDidUpdate', this.state);
+    // console.log('componentDidUpdate', prevState.data);
+    // console.log('componentDidUpdate', prevState.data.toJS());
+    // console.log('componentDidUpdate', this.state.data.toJS());
+    // console.log('componentDidUpdate', this.state.data);
+    // console.log('componentDidUpdate', prevState.data);
+    // console.log('componentDidUpdate', prevState.data[0].username);
+    // console.log('componentDidUpdate', this.state.data[0].username);
+
+    if(prevState.page != this.state.page){
+
+      this.loadItems();
+    }
   }
 
   // addMessage(newContent) {    
@@ -210,15 +236,7 @@ export default class GridPanel extends Component {
         // <MessageCreator create={this.addMessage.bind(this)} />  
 
   removeMessage(message){
-  	this.dispatcher.dispatch(this.store.messages.actions.REMOVE, message)
-  }
-
-  componentDidUpdate(prevProps, prevState){
-
-    if(prevState.page != this.state.page){
-
-      this.loadItems();
-    }
+  	this.dispatcher.dispatch(this.store.actions.REMOVE, message)
   }
   
         // <MessageCreator
@@ -267,31 +285,43 @@ export default class GridPanel extends Component {
 
  	renderView(){
 
-  	let {data} = this.state;
+  	// let {data} = this.state;
 
   	let {View} = this.props;
 
+
+    // var i = 0;
+    // return <Table>
+    //   <TableHead>
+    //     <TableRow>
+    //       <TableCell>ID </TableCell>
+    //       <TableCell></TableCell>
+    //     </TableRow>
+    //   </TableHead>
+    //   <TableBody>
+    //     {data.map(n => {
+    //       i++;
+    //       console.log('N', n);
+    //       return (
+    //         <TableRow key={i}>
+    //           <TableCell>{n.id}</TableCell>
+
+    //           <TableCell><Button
+    //             onTouchTap={this.removeMessage.bind(this, n)}
+    //           >Удалить</Button></TableCell>
+    //         </TableRow>
+    //       );
+    //     })}
+    //   </TableBody>
+    // </Table>;
+
   	return <View
-  		data={this.state.data}
+  		// data={this.state.data}
+      store={this.store}
+      {...this.props}
   	/>
 
- 		/*return <Table>
-      <TableHead>
-        <TableRow>
-          <TableCell>ID </TableCell>
-        </TableRow>
-      </TableHead>
-      <TableBody>
-        {data.map(n => {
-        	i++;
-          return (
-            <TableRow key={i}>
-              <TableCell>{n.name}</TableCell>
-            </TableRow>
-          );
-        })}
-      </TableBody>
-    </Table>;*/
+ 		/**/
  	}
 
  	renderPagination(){

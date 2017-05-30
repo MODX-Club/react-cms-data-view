@@ -2,13 +2,14 @@ import { Dispatcher } from 'flux';
 
 export default class DataDispatcher extends Dispatcher{
 
-	dispatch(actionType, object){
+	dispatch(actionType, object, newObject){
 
 		console.log('DataDispatcher dispatch', actionType, object);
 
 		return Dispatcher.prototype.dispatch.call(this, {
 			type: actionType,
-			object
+			object,
+			newObject
 		});
 	}
 

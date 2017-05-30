@@ -1,23 +1,73 @@
 {
-  "name": "react-cms-data-view",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "_args": [ ],
+  "_from": "react-cms-data-view@latest",
+  "_id": "react-cms-data-view@1.0.0",
+  "_inCache": true,
+  "_location": "/react-cms-data-view",
+  "_nodeVersion": "7.10.0",
+  "_npmOperationalInternal": {
+    "host": "s3://npm-registry-packages",
+    "tmp": "tmp/react-cms-data-view-1.0.0.tgz_1496110647236_0.9159146463498473"
   },
-  "keywords": [
-    "react",
-    "material-ui",
-    "data-view"
+  "_npmUser": {
+    "name": "fi1osof",
+    "email": "n.lanets@modxclub.ru"
+  },
+  "_npmVersion": "4.2.0",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "react-cms-data-view",
+    "scope": null,
+    "escapedName": "react-cms-data-view",
+    "name": "react-cms-data-view",
+    "rawSpec": "",
+    "spec": "latest",
+    "type": "tag"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
   ],
-  "author": "Fi1osof",
-  "license": "ISC",
+  "_resolved": "https://registry.npmjs.org/react-cms-data-view/-/react-cms-data-view-1.0.0.tgz",
+  "_shasum": "ac0800131172418d1ca1d11bdcde5bb1f35ae72b",
+  "_shrinkwrap": null,
+  "_spec": "react-cms-data-view",
+  "author": {
+    "name": "Fi1osof"
+  },
   "dependencies": {
     "events": "^1.1.1",
     "flux": "^3.1.2",
     "react": "^15.5.4",
     "react-redux": "^5.0.5",
     "redux": "^3.6.0"
-  }
+  },
+  "description": "",
+  "devDependencies": {},
+  "directories": {},
+  "dist": {
+    "shasum": "ac0800131172418d1ca1d11bdcde5bb1f35ae72b",
+    "tarball": "https://registry.npmjs.org/react-cms-data-view/-/react-cms-data-view-1.0.0.tgz"
+  },
+  "gitHead": "9b619909ae37f10866da0f3afd2ee1c550dde100",
+  "keywords": [
+    "react",
+    "material-ui",
+    "data-view"
+  ],
+  "license": "ISC",
+  "main": "index.js",
+  "maintainers": [
+    {
+      "name": "fi1osof",
+      "email": "n.lanets@modxclub.ru"
+    }
+  ],
+  "name": "react-cms-data-view",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "1.1.0"
 }
