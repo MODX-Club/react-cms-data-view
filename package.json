@@ -1,0 +1,23 @@
+{
+  "name": "react-cms-data-view",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "react",
+    "material-ui",
+    "data-view"
+  ],
+  "author": "Fi1osof",
+  "license": "ISC",
+  "dependencies": {
+    "events": "^1.1.1",
+    "flux": "^3.1.2",
+    "react": "^15.5.4",
+    "react-redux": "^5.0.5",
+    "redux": "^3.6.0"
+  }
+}
