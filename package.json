@@ -1,13 +1,14 @@
 {
-  "_args": [ ],
-  "_from": "react-cms-data-view@latest",
-  "_id": "react-cms-data-view@1.0.0",
+  "_args": [ 
+  ],
+  "_from": "react-cms-data-view@1.1.1",
+  "_id": "react-cms-data-view@1.1.1",
   "_inCache": true,
   "_location": "/react-cms-data-view",
   "_nodeVersion": "7.10.0",
   "_npmOperationalInternal": {
     "host": "s3://npm-registry-packages",
-    "tmp": "tmp/react-cms-data-view-1.0.0.tgz_1496110647236_0.9159146463498473"
+    "tmp": "tmp/react-cms-data-view-1.1.1.tgz_1496215266606_0.12079400522634387"
   },
   "_npmUser": {
     "name": "fi1osof",
@@ -16,22 +17,22 @@
   "_npmVersion": "4.2.0",
   "_phantomChildren": {},
   "_requested": {
-    "raw": "react-cms-data-view",
+    "raw": "react-cms-data-view@1.1.1",
     "scope": null,
     "escapedName": "react-cms-data-view",
     "name": "react-cms-data-view",
-    "rawSpec": "",
-    "spec": "latest",
-    "type": "tag"
+    "rawSpec": "1.1.1",
+    "spec": "1.1.1",
+    "type": "version"
   },
   "_requiredBy": [
     "#USER",
     "/"
   ],
-  "_resolved": "https://registry.npmjs.org/react-cms-data-view/-/react-cms-data-view-1.0.0.tgz",
-  "_shasum": "ac0800131172418d1ca1d11bdcde5bb1f35ae72b",
+  "_resolved": "https://registry.npmjs.org/react-cms-data-view/-/react-cms-data-view-1.1.1.tgz",
+  "_shasum": "adc239d2963d926780ecc4f8ff02f4b2fa75033a",
   "_shrinkwrap": null,
-  "_spec": "react-cms-data-view",
+  "_spec": "react-cms-data-view@1.1.1", 
   "author": {
     "name": "Fi1osof"
   },
@@ -42,12 +43,11 @@
     "react-redux": "^5.0.5",
     "redux": "^3.6.0"
   },
-  "description": "",
   "devDependencies": {},
   "directories": {},
   "dist": {
-    "shasum": "ac0800131172418d1ca1d11bdcde5bb1f35ae72b",
-    "tarball": "https://registry.npmjs.org/react-cms-data-view/-/react-cms-data-view-1.0.0.tgz"
+    "shasum": "adc239d2963d926780ecc4f8ff02f4b2fa75033a",
+    "tarball": "https://registry.npmjs.org/react-cms-data-view/-/react-cms-data-view-1.1.1.tgz"
   },
   "gitHead": "9b619909ae37f10866da0f3afd2ee1c550dde100",
   "keywords": [
@@ -69,5 +69,5 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "version": "1.1.1"
+  "version": "1.1.2"
 }

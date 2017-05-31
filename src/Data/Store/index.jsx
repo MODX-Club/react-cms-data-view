@@ -145,9 +145,9 @@ export default class MessageStore extends ReduceStore {
     //   return objects.id === action.id ? true : false;
     // }); 
 
-    // console.log('index', index);
-    // console.log('OldObject', object);
-    // console.log('newObject', newObject);
+    console.log('index', index);
+    console.log('OldObject', object);
+    console.log('newObject', newObject);
     // console.log('State', state);
 
     if(index != -1 && newObject){ 

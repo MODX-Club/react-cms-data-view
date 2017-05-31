@@ -175,9 +175,9 @@ export default class GridPanel extends Component {
     // this.listener = this.store.messages.addListener(this.onStateChanges2.bind(this));  
   }
 
-  componentWillUnmount() {    
-    this.listener.remove();  
-  }  
+  // componentWillUnmount() {    
+  //   this.listener.remove();  
+  // }  
 
   componentDidUpdate(prevProps, prevState){
     // console.log('componentDidUpdate', prevState);
@@ -317,6 +317,7 @@ export default class GridPanel extends Component {
 
   	return <View
   		// data={this.state.data}
+      grid={this}
       store={this.store}
       {...this.props}
   	/>
