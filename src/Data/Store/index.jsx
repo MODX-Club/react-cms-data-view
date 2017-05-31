@@ -12,11 +12,11 @@ const defaultProps = {
 export default class MessageStore extends ReduceStore {  
  
 	actions = {
-		CREATE: 'CREATE_MESSAGE',
-    REMOVE: 'REMOVE_MESSAGE',
+		CREATE: 'CREATE_OBJECT',
+    REMOVE: 'REMOVE_OBJECT',
 		UPDATE: 'UPDATE_OBJECT',
-		GET_AT: 'GET_AT_MESSAGE',
-		FIND: 	'FIND_MESSAGE',
+		GET:    'GET_AT_OBJECT',
+		FIND: 	'FIND_OBJECT',
 		SET_DATA: 	'SET_DATA',
 	}
 

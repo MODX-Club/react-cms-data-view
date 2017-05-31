@@ -45,7 +45,7 @@ export default class Pagination extends Component{
 
   render(){
 
-    let {show, page, limit, total} = this.props;
+    let {show, page, limit, total, classes} = this.props;
 
     if(!show || !page || !limit || !total){
       return null;
@@ -64,7 +64,7 @@ export default class Pagination extends Component{
     for(var i = 1; i <= pages; i++){
       if(
         (
-          page -1 > 3
+          page > 2
           && i < page -1
           && i > 1
         )
@@ -93,7 +93,7 @@ export default class Pagination extends Component{
     }
 
     return (
-      <div className="pagination">
+      <div className={classes.Pagination}>
         <ul className="pagination">
           {rows}
         </ul>

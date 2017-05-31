@@ -326,6 +326,7 @@ export default class GridPanel extends Component {
 
  	renderPagination(){
  		return <Pagination 
+      classes={this.props.classes}
       limit={this.state.limit}
       page={this.state.page}
       total={this.state.total || 0}
