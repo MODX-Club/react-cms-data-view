@@ -34,13 +34,13 @@ export default class MessageStore extends ReduceStore {
 
 	reduce(state, action, data) {    
    	
- 		console.log('reduce(state, action)', action, data);   
+ 		// console.log('reduce(state, action)', action, data);   
 
 	 switch (action.type) {    
 
 	   case this.actions.SET_DATA:   
 
-      console.log('Current state', state);
+      // console.log('Current state', state);
       // return state.set(action.object);   
 
       // var newState = state.push(action.object); 
@@ -98,7 +98,7 @@ export default class MessageStore extends ReduceStore {
     //   return objects.id === action.id ? true : false;
     // }); 
 
-    console.log('remove', index, action.object);
+    // console.log('remove', index, action.object);
 
 
     if(index != -1){ 
@@ -145,9 +145,9 @@ export default class MessageStore extends ReduceStore {
     //   return objects.id === action.id ? true : false;
     // }); 
 
-    console.log('index', index);
-    console.log('OldObject', object);
-    console.log('newObject', newObject);
+    // console.log('index', index);
+    // console.log('OldObject', object);
+    // console.log('newObject', newObject);
     // console.log('State', state);
 
     if(index != -1 && newObject){ 

@@ -4,7 +4,7 @@ export default class DataDispatcher extends Dispatcher{
 
 	dispatch(actionType, object, newObject){
 
-		console.log('DataDispatcher dispatch', actionType, object);
+		// console.log('DataDispatcher dispatch', actionType, object);
 
 		return Dispatcher.prototype.dispatch.call(this, {
 			type: actionType,
