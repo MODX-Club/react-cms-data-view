@@ -6,15 +6,16 @@ import { Dispatcher } from 'flux';
  
 
 const defaultProps = {
-	dsf: "SDFds",
 }
 
-export default class MessageStore extends ReduceStore {  
+export default class dataStore extends ReduceStore {  
  
 	actions = {
+    LOAD: 'LOAD_OBJECT',
 		CREATE: 'CREATE_OBJECT',
     REMOVE: 'REMOVE_OBJECT',
-		UPDATE: 'UPDATE_OBJECT',
+    UPDATE: 'UPDATE_OBJECT',
+		SAVE:   'SAVE_OBJECT',
 		GET:    'GET_AT_OBJECT',
 		FIND: 	'FIND_OBJECT',
 		SET_DATA: 	'SET_DATA',
@@ -29,7 +30,8 @@ export default class MessageStore extends ReduceStore {
 	}  
 
 	// getState(){
-	// 	return this._state.toJS();
+ //    alert('getState');
+	// 	return this._state;
 	// }
 
 	reduce(state, action, data) {    
@@ -37,6 +39,11 @@ export default class MessageStore extends ReduceStore {
  		// console.log('reduce(state, action)', action, data);   
 
 	 switch (action.type) {    
+
+     case this.actions.LOAD: 
+
+      return state; 
+      break; 
 
 	   case this.actions.SET_DATA:   
 
@@ -65,7 +72,8 @@ export default class MessageStore extends ReduceStore {
 
 	     return this.remove(state, action); 
 
-	   case this.actions.UPDATE: 
+     case this.actions.UPDATE: 
+	   case this.actions.SAVE: 
 
 	     return this.update(state, action);
 
@@ -188,7 +196,7 @@ export default class MessageStore extends ReduceStore {
   }
 }
 
-MessageStore.defaultProps = defaultProps;
+dataStore.defaultProps = defaultProps;
 
 // export default function(){
 // 	var dispatcher = new Dispatcher(); 

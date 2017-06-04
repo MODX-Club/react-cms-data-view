@@ -21,6 +21,7 @@ const defaultProps = {
 	limit: 10,
 	query: '',
   connector_url: 'assets/components/modxsite/connectors/connector.php',
+  requestParams: null,
 }
 
 export default class GridPanel extends Component {  
@@ -43,17 +44,17 @@ export default class GridPanel extends Component {
       page: props.page,
       query: props.query, 
     	// data: this.store.getState().toArray(),
-    };  
-
-    console.log();
+    };
   }  
 
 
-  loadItems(){
+  loadItems(params){
 
     if(this.state.inRequest === true){
       return;
     }
+
+    let {requestParams} = this.props;
 
     var body = new FormData();
 
@@ -64,6 +65,14 @@ export default class GridPanel extends Component {
       query: this.state.query, 
       count: 1,
     };
+
+    if(requestParams){
+      Object.assign(data, requestParams);
+    }
+
+    if(params){
+      Object.assign(data, params);
+    }
 
     for(var i in data){
 
@@ -149,15 +158,11 @@ export default class GridPanel extends Component {
 
 			// console.log('componentDidUpdate payload.actionType', payload, payload.type);
 
-		   //  switch (payload.actionType) {
-		   //    case 'country-update':
-		   //    case 'city-update':
-		   //      // flightDispatcher.waitFor([CityStore.dispatchToken]);
-		   //      // FlightPriceStore.price =
-		   //      //   getFlightPriceStore(CountryStore.country, CityStore.city);
-		   //      console.log("DSf");
-		   //      break;
-		  	// }
+		    switch (payload.type) {
+		      case this.store.actions.LOAD:
+            this.loadItems(payload.object);
+		        break;
+		  	}
 		  	// this.setState(prevState => {
      //      console.log('componentDidUpdate prevState', prevState.data && prevState.data[0] && prevState.data[0].username);
      //      return {
@@ -285,35 +290,7 @@ export default class GridPanel extends Component {
 
  	renderView(){
 
-  	// let {data} = this.state;
-
   	let {View} = this.props;
-
-
-    // var i = 0;
-    // return <Table>
-    //   <TableHead>
-    //     <TableRow>
-    //       <TableCell>ID </TableCell>
-    //       <TableCell></TableCell>
-    //     </TableRow>
-    //   </TableHead>
-    //   <TableBody>
-    //     {data.map(n => {
-    //       i++;
-    //       console.log('N', n);
-    //       return (
-    //         <TableRow key={i}>
-    //           <TableCell>{n.id}</TableCell>
-
-    //           <TableCell><Button
-    //             onTouchTap={this.removeMessage.bind(this, n)}
-    //           >Удалить</Button></TableCell>
-    //         </TableRow>
-    //       );
-    //     })}
-    //   </TableBody>
-    // </Table>;
 
   	return <View
   		// data={this.state.data}
@@ -321,13 +298,12 @@ export default class GridPanel extends Component {
       store={this.store}
       {...this.props}
   	/>
-
- 		/**/
  	}
 
  	renderPagination(){
+
  		return <Pagination 
-      classes={this.props.classes}
+      classes={this.props.classes || {}}
       limit={this.state.limit}
       page={this.state.page}
       total={this.state.total || 0}
