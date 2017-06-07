@@ -43,6 +43,7 @@ export default class GridPanel extends Component {
       limit: props.limit,
       page: props.page,
       query: props.query, 
+      requestParams: props.requestParams, 
     	// data: this.store.getState().toArray(),
     };
   }  
@@ -54,7 +55,7 @@ export default class GridPanel extends Component {
       return;
     }
 
-    let {requestParams} = this.props;
+    let {requestParams} = this.state;
 
     var body = new FormData();
 
@@ -149,6 +150,17 @@ export default class GridPanel extends Component {
     this.setState({
       inRequest: true,
     });
+  }
+
+  componentWillReceiveProps(nextProps){
+
+    if(nextProps.requestParams != this.props.requestParams){
+      this.setState({
+        requestParams: nextProps.requestParams,
+      });
+    }
+
+    return true;
   }
 
   componentDidMount() {    
