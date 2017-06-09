@@ -2,10 +2,10 @@ import React, {Component} from 'react';
 import {Container} from 'flux/utils'; 
 
 import Message from '../../View/GridView';
-import MessageCreator from './components/message-creator';
+// import MessageCreator from './components/message-creator';
 // import css from './main.css';
-import MessageActions from './actions/message-actions';
-import MessageStore from '../../Data/Store';
+// import MessageActions from './actions/message-actions';
+import DataStore from '../../Data/Store';
 
 import Pagination from '../../Pagination';
 
@@ -34,11 +34,11 @@ export default class GridPanel extends Component {
 
     // console.log('MessageStore', MessageStore);
 
-    this.store = new MessageStore(this.dispatcher);   
+    this.store = new DataStore(this.dispatcher);   
 
     // console.log('store', store);
 
-    this.actions = new MessageActions(this.store);  
+    // this.actions = new MessageActions(this.store);  
     this.state = {
       limit: props.limit,
       page: props.page,
