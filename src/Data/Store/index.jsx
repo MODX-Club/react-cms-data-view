@@ -36,7 +36,8 @@ export default class dataStore extends ReduceStore {
 
 	reduce(state, action, data) {    
    	
- 		// console.log('reduce(state, action)', action, data);   
+    // console.log('reduce(state, action)', action, data);  
+    // console.log("Store Reduce", state, action, data);
 
 	 switch (action.type) {    
 
@@ -56,11 +57,11 @@ export default class dataStore extends ReduceStore {
 
       state = state.clear();
 
-      action.object.map((item) => {
+      action.object && action.object.map((item) => {
         state = state.push(item);
       });
 
-	 		return    state;
+	 		return state;
 
 
 	   case this.actions.CREATE:   
@@ -87,6 +88,7 @@ export default class dataStore extends ReduceStore {
 	}
 
   create(state, action){
+    // console.log("Store Create", state, action);
   	return state.unshift(action.object);
   }
 
