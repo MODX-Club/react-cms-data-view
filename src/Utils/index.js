@@ -1,14 +1,6 @@
-export function loadItems(params){
-
-  // console.log('loadItems', this, params);
-
-  if(this.state.inRequest === true){
-    return;
-  }
+export function loadItems(connector_url, connector_path, store, params, callback){
 
   let {
-    requestParams,
-    store,
   } = this.state;
 
   let dispatcher = store.getDispatcher();
@@ -17,15 +9,9 @@ export function loadItems(params){
 
   var data = {
     format: "json",
-    limit: this.state.limit,
-    page: this.state.page,
-    query: this.state.query, 
     count: 1,
   };
 
-  if(requestParams){
-    Object.assign(data, requestParams);
-  }
 
   if(params){
     Object.assign(data, params);
@@ -42,14 +28,7 @@ export function loadItems(params){
     body.append(i, value);
   };
 
-
-  var newState = {
-    errors: {
-    },
-    inRequest: false,
-  }
-
-  fetch(this.props.connector_url +'?pub_action=' + this.props.connector_path +'getdata',{
+  fetch(connector_url +'?pub_action=' + connector_path +'getdata',{
     credentials: 'same-origin',
     method: "POST",
     body: body,
@@ -61,9 +40,6 @@ export function loadItems(params){
     .then(function (data) {
 
       if(data.success){
-
-        // newState.items = data.object || [];
-        newState.total = data.total || 0;
 
         dispatcher.dispatch('SET_DATA', data.object || []);
       }
@@ -88,22 +64,15 @@ export function loadItems(params){
         }
       }
 
-      // if(!this.state.errors){
-      //   this.state.errors = {};
-      // }
-
-      // Object.assign(this.state.errors, errors.login_error);
-
-      this.setState(newState);
+      if(callback){
+        callback(data, errors);
+      }
 
     }.bind(this))
     .catch((error) => {
         console.error('Request failed', error);
-        this.setState(newState);
       }
     );
 
-  this.setState({
-    inRequest: true,
-  });
+  return;
 }

@@ -1,40 +1,8 @@
 {
-  "_args": [],
-  "_from": "react-cms-data-view@1.1.1",
-  "_id": "react-cms-data-view@1.1.1",
-  "_inCache": true,
-  "_location": "/react-cms-data-view",
-  "_nodeVersion": "7.10.0",
-  "_npmOperationalInternal": {
-    "host": "s3://npm-registry-packages",
-    "tmp": "tmp/react-cms-data-view-1.1.1.tgz_1496215266606_0.12079400522634387"
-  },
-  "_npmUser": {
-    "name": "fi1osof",
-    "email": "n.lanets@modxclub.ru"
-  },
-  "_npmVersion": "4.2.0",
-  "_phantomChildren": {},
-  "_requested": {
-    "raw": "react-cms-data-view@1.1.1",
-    "scope": null,
-    "escapedName": "react-cms-data-view",
-    "name": "react-cms-data-view",
-    "rawSpec": "1.1.1",
-    "spec": "1.1.1",
-    "type": "version"
-  },
-  "_requiredBy": [
-    "#USER",
-    "/"
-  ],
-  "_resolved": "https://registry.npmjs.org/react-cms-data-view/-/react-cms-data-view-1.1.1.tgz",
-  "_shasum": "adc239d2963d926780ecc4f8ff02f4b2fa75033a",
-  "_shrinkwrap": null,
-  "_spec": "react-cms-data-view@1.1.1",
   "author": {
     "name": "Fi1osof"
   },
+  "bundleDependencies": false,
   "dependencies": {
     "events": "^1.1.1",
     "flux": "^3.1.2",
@@ -43,6 +11,7 @@
     "react-redux": "^5.0.5",
     "redux": "^3.6.0"
   },
+  "deprecated": false,
   "devDependencies": {},
   "directories": {},
   "dist": {
@@ -65,9 +34,8 @@
   ],
   "name": "react-cms-data-view",
   "optionalDependencies": {},
-  "readme": "ERROR: No README data found!",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "version": "1.2.0"
+  "version": "1.2.1"
 }
