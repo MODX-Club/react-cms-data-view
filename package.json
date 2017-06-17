@@ -1,6 +1,5 @@
 {
-  "_args": [ 
-  ],
+  "_args": [],
   "_from": "react-cms-data-view@1.1.1",
   "_id": "react-cms-data-view@1.1.1",
   "_inCache": true,
@@ -32,13 +31,14 @@
   "_resolved": "https://registry.npmjs.org/react-cms-data-view/-/react-cms-data-view-1.1.1.tgz",
   "_shasum": "adc239d2963d926780ecc4f8ff02f4b2fa75033a",
   "_shrinkwrap": null,
-  "_spec": "react-cms-data-view@1.1.1", 
+  "_spec": "react-cms-data-view@1.1.1",
   "author": {
     "name": "Fi1osof"
   },
   "dependencies": {
     "events": "^1.1.1",
     "flux": "^3.1.2",
+    "immutable": "^3.8.1",
     "react": "^15.5.4",
     "react-redux": "^5.0.5",
     "redux": "^3.6.0"
@@ -69,5 +69,5 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "version": "1.1.8"
+  "version": "1.1.9"
 }
