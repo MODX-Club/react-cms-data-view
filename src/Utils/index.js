@@ -1,6 +1,10 @@
 export function loadItems(connector_url, connector_path, store, params, callback){
 
   let {
+    addInformerMessage
+  } = this.props;
+
+  let {
   } = this.state;
 
   let dispatcher = store.getDispatcher();
@@ -41,7 +45,7 @@ export function loadItems(connector_url, connector_path, store, params, callback
 
       if(data.success){
 
-        dispatcher.dispatch('SET_DATA', data.object || []);
+        dispatcher.dispatch(store.actions["SET_DATA"], data.object || []);
       }
       else{
 
@@ -56,12 +60,7 @@ export function loadItems(connector_url, connector_path, store, params, callback
 
         var error = data.message || "Ошибка выполнения запроса";
 
-        if(this.props.addInformerMessage){
-          this.props.addInformerMessage(error);
-        }
-        else{
-          console.error(error);
-        }
+        addInformerMessage(error);
       }
 
       if(callback){
@@ -74,5 +73,115 @@ export function loadItems(connector_url, connector_path, store, params, callback
       }
     );
 
+  return;
+}
+
+
+export function saveItem(connector_url, connector_path, store, item, callback){
+
+  if(
+    !item
+    || item._sending === true
+  ){
+    return;
+  } 
+
+  let {addInformerMessage} = this.props;
+
+  let dispatcher = store.getDispatcher();
+
+  item._sending = true;
+
+  // console.log('saveItem STORE UPDATE', item, store);
+    
+  var action = item.id && item.id > 0 ? 'update' : 'create';
+
+  var options = options || {};
+
+  var body = new FormData();
+
+  var data = item;
+
+  for(var i in data){
+    var value = data[i];
+
+    if(value === undefined){
+      continue;
+    }
+
+    body.append(i, value);
+  };
+
+
+  fetch(this.props.connector_url + '?pub_action='+ connector_path + action,{
+    credentials: 'same-origin',
+    method: options.method || "POST",
+    body: body,
+  })
+    .then(function (response) {
+
+      return response.json()
+    })
+    .then((data) => {
+      // console.log('DATA', data);
+      // self.setState({items: data.object});
+
+      var errors = {};
+
+      item._sending = false;
+
+      if(data.success === true){
+
+        // var items = lodash.clone(this.state.items);
+
+        var newObject = data.object || {};
+ 
+
+        Object.assign(newObject, {
+          _isDirty: false,
+        });
+
+        dispatcher.dispatch(store.actions["SAVE"], item, newObject); 
+
+      }
+      else{
+
+        if(data.data && data.data.length){
+          data.data.map(function(error){
+            var value = error.msg;
+            if(value && value != ''){
+              errors[error.id] = value;
+            }
+          });
+        }
+
+        errors.error_message = data.message;
+
+        addInformerMessage(data.message || "Ошибка выполнения запроса");
+
+        // this.forceUpdate();
+      }
+
+      // newState.errors = this.state.errors || {};
+
+      // newState.errors[item.id || 0] = errors;
+
+      item._errors = errors;
+
+      if(callback){
+        callback(data, errors);
+      }
+      
+      // this.forceUpdate();
+
+    })
+    .catch((error) => {
+        console.error('Request failed', error, this); 
+
+        addInformerMessage(data.message || "Ошибка выполнения запроса");
+      }
+    );
+
+  this.forceUpdate();
   return;
 }
