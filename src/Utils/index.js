@@ -79,6 +79,9 @@ export function loadItems(connector_url, connector_path, store, params, callback
 
 export function saveItem(connector_url, connector_path, store, item, callback){
 
+
+  // console.log('saveItem STORE UPDATE', item, store);
+
   if(
     !item
     || item._sending === true
@@ -91,8 +94,6 @@ export function saveItem(connector_url, connector_path, store, item, callback){
   let dispatcher = store.getDispatcher();
 
   item._sending = true;
-
-  // console.log('saveItem STORE UPDATE', item, store);
     
   var action = item.id && item.id > 0 ? 'update' : 'create';
 
@@ -127,8 +128,6 @@ export function saveItem(connector_url, connector_path, store, item, callback){
       // self.setState({items: data.object});
 
       var errors = {};
-
-      item._sending = false;
 
       if(data.success === true){
 
@@ -173,6 +172,11 @@ export function saveItem(connector_url, connector_path, store, item, callback){
       }
       
       // this.forceUpdate();
+  
+
+      item._sending = false;
+
+      // console.log('saveItem STORE UPDATE 2', item, store);
 
     })
     .catch((error) => {
