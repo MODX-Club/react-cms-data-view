@@ -1,15 +1,22 @@
 import { Dispatcher } from 'flux';
 
+import lodash from 'lodash';
+
+window.lodash = lodash;
+
 export default class DataDispatcher extends Dispatcher{
 
 	dispatch(actionType, object, newObject){
 
-		// console.log('DataDispatcher dispatch', actionType, object);
+		// console.log('DataDispatcher dispatch', actionType, object, newObject, object && object.place_id, newObject && newObject.place_id);
+
+		let originalObject = object && lodash.cloneDeep(object) || null;
 
 		return Dispatcher.prototype.dispatch.call(this, {
 			type: actionType,
 			object,
-			newObject
+			newObject,
+			originalObject,
 		});
 	}
 
