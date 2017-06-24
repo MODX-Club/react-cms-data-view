@@ -110,6 +110,18 @@ export function saveItem(connector_url, connector_path, store, item, callback){
       continue;
     }
 
+    // Пропускаем свойства-объекты
+    if(typeof value === "object" && !Array.isArray(value)){
+      continue;
+    }
+
+    // Пропускаем временные свойства
+    if(/^\_/.test(i)){
+      continue;
+    }
+
+    // console.log('Form item', i, value, Array.isArray(value));
+
     body.append(i, value);
   };
 
