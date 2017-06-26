@@ -89,7 +89,7 @@ export function saveItem(connector_url, connector_path, store, item, callback){
     return;
   } 
 
-  let {addInformerMessage} = this.props;
+  let {addInformerMessage} = this.props.documentActions;
 
   let dispatcher = store.getDispatcher();
 
