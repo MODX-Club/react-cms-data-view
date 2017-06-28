@@ -111,7 +111,11 @@ export function saveItem(connector_url, connector_path, store, item, callback){
     }
 
     // Пропускаем свойства-объекты
-    if(typeof value === "object" && !Array.isArray(value)){
+    if(
+      typeof value === "object" 
+      && !Array.isArray(value)
+      && value !== null
+    ){
       continue;
     }
 
