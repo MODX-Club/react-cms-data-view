@@ -100,7 +100,7 @@ export default class dataStore extends ReduceStore {
 
     // console.log("Messages", messages);
 
-    window.state = state;
+    // window.state = state;
 
 
     var index = state.indexOf(action.object); 
