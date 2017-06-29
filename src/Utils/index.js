@@ -67,12 +67,16 @@ export function loadItems(connector_url, connector_path, store, params, callback
         callback(data, errors);
       }
 
+      this.forceUpdate();
+
     }.bind(this))
     .catch((error) => {
         console.error('Request failed', error);
       }
     );
 
+
+  this.forceUpdate();
   return;
 }
 
@@ -193,6 +197,8 @@ export function saveItem(connector_url, connector_path, store, item, callback){
       item._sending = false;
 
       // console.log('saveItem STORE UPDATE 2', item, store);
+
+      this.forceUpdate();
 
     })
     .catch((error) => {
@@ -324,6 +330,8 @@ export function removeItem(connector_url, connector_path, store, item, callback)
       item._sending = false;
 
       // console.log('saveItem STORE UPDATE 2', item, store);
+
+      this.forceUpdate();
 
     })
     .catch((error) => {
