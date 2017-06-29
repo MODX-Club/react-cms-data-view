@@ -1,8 +1,6 @@
 export function loadItems(connector_url, connector_path, store, params, callback){
 
-  let {
-    addInformerMessage
-  } = this.props;
+  let {addInformerMessage} = this.props.documentActions;
 
   let {
   } = this.state;
