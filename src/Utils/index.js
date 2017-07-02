@@ -1,3 +1,78 @@
+export function request(connector_url, connector_path, params, callback, method){
+
+  method = method || 'POST';
+
+  let {addInformerMessage} = this.props.documentActions;
+
+  var body = new FormData();
+
+  var data = {
+  };
+
+  if(params){
+    Object.assign(data, params);
+  }
+
+  for(var i in data){
+
+    var value = data[i];
+
+    if(value === null || value === undefined){
+      continue;
+    }
+
+    body.append(i, value);
+  };
+
+  fetch(connector_url +'?pub_action=' + connector_path,{
+    credentials: 'same-origin',
+    method: method,
+    body: body,
+  })
+    .then(function (response) {
+
+      return response.json()
+    })
+    .then(function (data) {
+
+      let errors = {};
+
+      if(data.success){
+      }
+      else{
+
+        if(data.data && data.data.length){
+
+          data.data.map(function(error){
+            if(error.msg != ''){
+              errors[error.id] = error.msg;
+            }
+          }, this);
+        }
+
+        var error = data.message || "Ошибка выполнения запроса";
+
+        addInformerMessage(error);
+      }
+
+      if(callback){
+        callback(data, errors);
+      }
+
+      this.forceUpdate();
+
+    }.bind(this))
+    .catch((error) => {
+        console.error('Request failed', error);
+      }
+    );
+
+
+  this.forceUpdate();
+  return;
+}
+
+
 export function loadItems(connector_url, connector_path, store, params, callback){
 
   let {addInformerMessage} = this.props.documentActions;
