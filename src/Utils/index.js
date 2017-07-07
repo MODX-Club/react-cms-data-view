@@ -1,6 +1,18 @@
-export function request(connector_url, connector_path, params, callback, method){
+export function request(connector_url, connector_path, params, options){
 
-  method = method || 'POST';
+  let defaultOptions = {
+    showErrorMessage: true,
+    callback: null,
+    method: 'POST',
+  };
+
+  options = options || {};
+
+  options = Object.assign(defaultOptions, options);
+
+  let showErrorMessage = options.showErrorMessage;
+  let callback = options.callback;
+  let method = options.method;
 
   let {addInformerMessage} = this.props.documentActions;
 
@@ -52,18 +64,21 @@ export function request(connector_url, connector_path, params, callback, method)
 
         var error = data.message || "Ошибка выполнения запроса";
 
-        addInformerMessage(error);
+        showErrorMessage && addInformerMessage(error);
       }
 
       if(callback){
         callback(data, errors);
       }
-
+      
       this.forceUpdate();
 
     }.bind(this))
     .catch((error) => {
         console.error('Request failed', error);
+        if(callback){
+          callback(data, errors);
+        }
       }
     );
 
