@@ -77,7 +77,7 @@ export function request(connector_url, connector_path, params, options){
     .catch((error) => {
         console.error('Request failed', error);
         if(callback){
-          callback(data, errors);
+          callback(data, {});
         }
       }
     );
