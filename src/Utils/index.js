@@ -64,7 +64,11 @@ export function request(connector_url, connector_path, params, options){
 
         var error = data.message || "Ошибка выполнения запроса";
 
-        showErrorMessage && addInformerMessage(error);
+        showErrorMessage && 
+          addInformerMessage && addInformerMessage({
+            text: error,
+            autohide: 4000,
+          });
       }
 
       if(callback){
@@ -148,7 +152,11 @@ export function loadItems(connector_url, connector_path, store, params, callback
 
         var error = data.message || "Ошибка выполнения запроса";
 
-        addInformerMessage(error);
+        addInformerMessage && 
+          addInformerMessage({
+            text: error,
+            autohide: 4000,
+          });
       }
 
       if(callback){
@@ -264,7 +272,12 @@ export function saveItem(connector_url, connector_path, store, item, callback){
 
         errors.error_message = data.message;
 
-        addInformerMessage(data.message || "Ошибка выполнения запроса");
+        addInformerMessage && 
+
+          addInformerMessage({
+            text: data.message || "Ошибка выполнения запроса",
+            autohide: 4000,
+          });
 
         // this.forceUpdate();
       }
@@ -292,7 +305,10 @@ export function saveItem(connector_url, connector_path, store, item, callback){
     .catch((error) => {
         console.error('Request failed', error, this); 
 
-        addInformerMessage(data.message || "Ошибка выполнения запроса");
+        addInformerMessage && addInformerMessage({
+            text: data.message || "Ошибка выполнения запроса",
+            autohide: 4000,
+          });
       }
     );
 
@@ -397,7 +413,10 @@ export function removeItem(connector_url, connector_path, store, item, callback)
 
         errors.error_message = data.message;
 
-        addInformerMessage(data.message || "Ошибка выполнения запроса");
+        addInformerMessage && addInformerMessage({
+            text: data.message || "Ошибка выполнения запроса",
+            autohide: 4000,
+          });
 
         // this.forceUpdate();
       }
@@ -425,7 +444,10 @@ export function removeItem(connector_url, connector_path, store, item, callback)
     .catch((error) => {
         console.error('Request failed', error, this); 
 
-        addInformerMessage(data.message || "Ошибка выполнения запроса");
+        addInformerMessage && addInformerMessage({
+            text: data.message || "Ошибка выполнения запроса",
+            autohide: 4000,
+          });
       }
     );
 
