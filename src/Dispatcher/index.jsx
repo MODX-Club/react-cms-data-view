@@ -2,7 +2,7 @@ import { Dispatcher } from 'flux';
 
 import lodash from 'lodash';
 
-window.lodash = lodash;
+// window.lodash = lodash;
 
 export default class DataDispatcher extends Dispatcher{
 
