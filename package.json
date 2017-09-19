@@ -1,7 +1,5 @@
 {
-  "author": {
-    "name": "Fi1osof"
-  },
+  "author": "Fi1osof",
   "bundleDependencies": false,
   "dependencies": {
     "events": "^1.1.1",
@@ -18,7 +16,6 @@
     "shasum": "adc239d2963d926780ecc4f8ff02f4b2fa75033a",
     "tarball": "https://registry.npmjs.org/react-cms-data-view/-/react-cms-data-view-1.1.1.tgz"
   },
-  "gitHead": "9b619909ae37f10866da0f3afd2ee1c550dde100",
   "keywords": [
     "react",
     "material-ui",
@@ -27,15 +24,21 @@
   "license": "ISC",
   "main": "index.js",
   "maintainers": [
-    {
-      "name": "fi1osof",
-      "email": "n.lanets@modxclub.ru"
-    }
+    "fi1osof <n.lanets@modxclub.ru>"
   ],
   "name": "react-cms-data-view",
   "optionalDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "version": "1.4.4"
+  "version": "1.4.5",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MODX-Club/react-cms-data-view.git"
+  },
+  "bugs": {
+    "url": "https://github.com/MODX-Club/react-cms-data-view/issues"
+  },
+  "homepage": "https://github.com/MODX-Club/react-cms-data-view#readme",
+  "description": ""
 }

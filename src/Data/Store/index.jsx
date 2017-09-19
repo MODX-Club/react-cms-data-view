@@ -118,54 +118,18 @@ export default class dataStore extends ReduceStore {
       return state;
     } 
 
-    // console.log('this.getAt', this.getAt(state, action));
-
-    // return this.getAt();
-
-    // console.log("Messages", messages);
-    // var index = state.findIndex((objects,k) => {
-    //   return objects.id === action.id ? true : false;
-    // }); 
-
-    // if(index != -1){ 
-      // var index = action.object;
-     //  return state.splice(index,1);
-    // }
-    // else{
-    //  return state;
-    // } 
   }
 
   update(state, action){
 
-  	// console.log('this.remove', action.object);
-
-  	// return this.getAt();
-
-  	// console.log("Messages", messages);
-
     let {object, newObject} = action;
-
-    window.object = object;
-  	window.newObject = newObject;
 
 
     var index = state.indexOf(object); 
-    // var index = state.findIndex((objects,k) => {
-    //   return objects.id === action.id ? true : false;
-    // }); 
-
-    // console.log('index', index);
-    // console.log('OldObject', object);
-    // console.log('newObject', newObject);
-    // console.log('State', state);
 
     if(index != -1 && newObject){ 
-      // return state.update(index, newObject);
-      // return state.merge(index, newObject);
 
       return state.update(index, function(item){
-        // console.log('Item', item);
         Object.assign(item, newObject);
         return item;
       });
@@ -173,34 +137,11 @@ export default class dataStore extends ReduceStore {
     else{
     	return state;
     } 
-
-  	// console.log('this.getAt', this.getAt(state, action));
-
-  	// return this.getAt();
-
-  	// console.log("Messages", messages);
-    // var index = state.findIndex((objects,k) => {
-    //   return objects.id === action.id ? true : false;
-    // }); 
-
-    // if(index != -1){ 
-    	// var index = action.object;
-     //  return state.splice(index,1);
-    // }
-    // else{
-    // 	return state;
-    // } 
   }
 
   getAt(state, action){
     return state.get(action.object);
-  	// return state.get(0);
   }
 }
 
 dataStore.defaultProps = defaultProps;
-
-// export default function(){
-// 	var dispatcher = new Dispatcher(); 
-// 	return new MessageStore(dispatcher);
-// };
