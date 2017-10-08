@@ -1,3 +1,7 @@
+1.4.6
+================================================
+- Remove cloneDeep from all actions except UPDATE_OBJECT 
+
 1.4.5
 ================================================
 - Minor bugfix
