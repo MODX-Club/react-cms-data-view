@@ -1,3 +1,7 @@
+1.5.0
+================================================
+- Rename .jsx to .js
+
 1.4.6
 ================================================
 - Remove cloneDeep from all actions except UPDATE_OBJECT 
